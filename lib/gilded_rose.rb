@@ -32,8 +32,10 @@ end
 
 def normal_tick
   @days_remaining -= 1
-  @quality -= 1 if @quality > 1
+  @quality -= 1
   @quality -= 1 if @days_remaining < 0
+
+  @quality = @quality.clamp(0,50)
 end
 
 def brie_tick
@@ -62,18 +64,19 @@ def backstage_tick
       @quality += 2
   end
 
-  @quality = @quality.clamp(0,50)
   @quality = 0 unless @days_remaining >= 0
+  @quality = @quality.clamp(0,50)
 end
 
 def conjured_tick
   @days_remaining -= 1
+  @quality -= 1
 
   case @days_remaining
     when 0..4
-      @quality -= 2
+      @quality -= 1
   end
 
-  @quality -= 4 if @days_remaining < 0
+  @quality -= 3 if @days_remaining < 0
   @quality = @quality.clamp(0,50)
 end
