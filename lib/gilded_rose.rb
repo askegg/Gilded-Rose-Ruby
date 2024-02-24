@@ -1,6 +1,12 @@
 class GildedRose
   attr_reader :name, :days_remaining, :quality
 
+  require "normal_tick"
+  require "brie_tick"
+  require "sulfuras_tick"
+  require "backstage_tick"
+  require "conjured_tick"
+
   def initialize(name:, days_remaining:, quality:)
     @name = name
     @days_remaining = days_remaining
@@ -28,55 +34,4 @@ class GildedRose
       return conjured_tick
     end
   end
-end
-
-def normal_tick
-  @days_remaining -= 1
-  @quality -= 1
-  @quality -= 1 if @days_remaining < 0
-
-  @quality = @quality.clamp(0,50)
-end
-
-def brie_tick
-  @days_remaining -= 1
-  @quality += 1
-  @quality += 1 if @days_remaining <= 0
-
-  @quality = @quality.clamp(0,50)
-end
-
-def sulfuras_tick
-end
-
-def backstage_tick
-  @days_remaining -= 1
-  @quality += 1
-
-  case @days_remaining
-    when 5..9
-      @quality += 1
-    when 3..4
-      @quality += 2
-    when 1
-      @quality += 4
-    when 0
-      @quality += 2
-  end
-
-  @quality = 0 unless @days_remaining >= 0
-  @quality = @quality.clamp(0,50)
-end
-
-def conjured_tick
-  @days_remaining -= 1
-  @quality -= 1
-
-  case @days_remaining
-    when 0..4
-      @quality -= 1
-  end
-
-  @quality -= 3 if @days_remaining < 0
-  @quality = @quality.clamp(0,50)
 end

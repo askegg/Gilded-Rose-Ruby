@@ -1,0 +1,2 @@
+def sulfuras_tick
+end
