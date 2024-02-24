@@ -1,11 +1,9 @@
+require 'zeitwerk'
+loader = Zeitwerk::Loader.for_gem(warn_on_extra_files: false)
+loader.setup
+
 class GildedRose
   attr_reader :name, :days_remaining, :quality
-
-  require "normal_tick"
-  require "brie_tick"
-  require "sulfuras_tick"
-  require "backstage_tick"
-  require "conjured_tick"
 
   def initialize(name:, days_remaining:, quality:)
     @name = name
@@ -15,23 +13,38 @@ class GildedRose
 
   def tick
     if @name == "Normal Item"
-      return normal_tick
+      @item = Item::Normal.new(days_remaining: days_remaining, quality: quality)
+      @item.tick
     end
 
     if @name == "Aged Brie"
-      return brie_tick
+      @item = Item::Brie.new(days_remaining: days_remaining, quality: quality)
+      @item.tick
     end
 
     if @name == "Sulfuras, Hand of Ragnaros"
-      return sulfuras_tick
+      @item = Item::Sulfuras.new(days_remaining: days_remaining, quality: quality)
+      @item.tick
     end
 
     if @name == "Backstage passes to a TAFKAL80ETC concert"
-      return backstage_tick
+      @item = Item::Backstage.new(days_remaining: days_remaining, quality: quality)
+      @item.tick
     end
 
     if @name == "Conjured Mana Cake"
-      return conjured_tick
+      @item = Item::Conjured.new(days_remaining: days_remaining, quality: quality)
+      @item.tick
     end
+  end
+
+  def quality
+    return @item.quality if @item
+    @quality
+  end
+
+  def days_remaining
+    return @item.days_remaining if @item
+    @days_remaining
   end
 end
