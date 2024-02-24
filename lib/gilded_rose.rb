@@ -1,39 +1,50 @@
-require 'zeitwerk'
+require "zeitwerk"
 loader = Zeitwerk::Loader.for_gem(warn_on_extra_files: false)
 loader.setup
 
 class GildedRose
-  attr_reader :name, :days_remaining, :quality
+  attr_reader :name
 
   def initialize(name:, days_remaining:, quality:)
     @name = name
     @days_remaining = days_remaining
     @quality = quality
+    @item = klass_for(@name).new(days_remaining: days_remaining, quality: quality)
+  end
+
+  def klass_for(name)
+    case name
+    when "Normal Item"
+      Item::Normal
+    when "Aged Brie"
+      Item::Brie
+    when "Sulfuras, Hand of Ragnaros"
+      Item::Sulfuras
+    when "Backstage passes to a TAFKAL80ETC concert"
+      Item::Backstage
+    when "Conjured Mana Cake"
+      Item::Conjured
+    end
   end
 
   def tick
     if @name == "Normal Item"
-      @item = Item::Normal.new(days_remaining: days_remaining, quality: quality)
       @item.tick
     end
 
     if @name == "Aged Brie"
-      @item = Item::Brie.new(days_remaining: days_remaining, quality: quality)
       @item.tick
     end
 
     if @name == "Sulfuras, Hand of Ragnaros"
-      @item = Item::Sulfuras.new(days_remaining: days_remaining, quality: quality)
       @item.tick
     end
 
     if @name == "Backstage passes to a TAFKAL80ETC concert"
-      @item = Item::Backstage.new(days_remaining: days_remaining, quality: quality)
       @item.tick
     end
 
     if @name == "Conjured Mana Cake"
-      @item = Item::Conjured.new(days_remaining: days_remaining, quality: quality)
       @item.tick
     end
   end
