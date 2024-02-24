@@ -28,34 +28,14 @@ class GildedRose
   end
 
   def tick
-    if @name == "Normal Item"
-      @item.tick
-    end
-
-    if @name == "Aged Brie"
-      @item.tick
-    end
-
-    if @name == "Sulfuras, Hand of Ragnaros"
-      @item.tick
-    end
-
-    if @name == "Backstage passes to a TAFKAL80ETC concert"
-      @item.tick
-    end
-
-    if @name == "Conjured Mana Cake"
-      @item.tick
-    end
+    @item.tick
   end
 
   def quality
-    return @item.quality if @item
-    @quality
+    @item.quality
   end
 
   def days_remaining
-    return @item.days_remaining if @item
-    @days_remaining
+    @item.days_remaining
   end
 end
