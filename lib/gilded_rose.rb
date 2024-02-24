@@ -12,6 +12,10 @@ class GildedRose
       return normal_tick
     end
 
+    if @name == "Aged Brie"
+      return brie_tick
+    end
+
     if @name != "Aged Brie" and @name != "Backstage passes to a TAFKAL80ETC concert"
       if @quality > 0
         if @name != "Sulfuras, Hand of Ragnaros"
@@ -69,4 +73,10 @@ def normal_tick
   @days_remaining -= 1
   @quality -= 1 if @quality > 1
   @quality -= 1 if @days_remaining < 0
+end
+
+def brie_tick
+  @days_remaining -= 1
+  @quality += 1 if @days_remaining <= 0 unless @quality >= 50
+  @quality += 1 if @quality > 1 unless @quality >= 50
 end
