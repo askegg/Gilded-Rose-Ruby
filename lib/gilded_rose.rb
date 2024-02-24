@@ -24,6 +24,10 @@ class GildedRose
       return backstage_tick
     end
 
+    if @name == "Conjured Mana Cake"
+      return conjured_tick
+    end
+
     if @name != "Aged Brie" and @name != "Backstage passes to a TAFKAL80ETC concert"
       if @quality > 0
         if @name != "Sulfuras, Hand of Ragnaros"
@@ -111,4 +115,16 @@ def backstage_tick
 
   @quality = @quality.clamp(0,50)
   @quality = 0 unless @days_remaining >= 0
+end
+
+def conjured_tick
+  @days_remaining -= 1
+
+  case @days_remaining
+    when 0..4
+      @quality -= 2
+  end
+
+  @quality -= 4 if @days_remaining < 0
+  @quality = @quality.clamp(0,50)
 end
