@@ -2,17 +2,13 @@ require "zeitwerk"
 loader = Zeitwerk::Loader.for_gem(warn_on_extra_files: false)
 loader.setup
 
-class GildedRose
-  attr_reader :name
-
-  def initialize(name:, days_remaining:, quality:)
-    @name = name
-    @days_remaining = days_remaining
-    @quality = quality
-    @item = klass_for(@name).new(days_remaining: days_remaining, quality: quality)
+module GildedRose
+  def self.new(name:, days_remaining:, quality:)
+    klass_name = klass_for(name).to_s
+    Kernel.const_get(klass_name).new(days_remaining: days_remaining, quality: quality)
   end
 
-  def klass_for(name)
+  def self.klass_for(name)
     case name
     when "Normal Item"
       Item::Normal
@@ -25,17 +21,5 @@ class GildedRose
     when "Conjured Mana Cake"
       Item::Conjured
     end
-  end
-
-  def tick
-    @item.tick
-  end
-
-  def quality
-    @item.quality
-  end
-
-  def days_remaining
-    @item.days_remaining
   end
 end
