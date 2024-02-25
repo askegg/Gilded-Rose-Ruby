@@ -10,8 +10,6 @@ module GildedRose
 
   def self.klass_for(name)
     case name
-    when "Normal Item"
-      Item::Normal
     when "Aged Brie"
       Item::Brie
     when "Sulfuras, Hand of Ragnaros"
@@ -20,6 +18,8 @@ module GildedRose
       Item::Backstage
     when "Conjured Mana Cake"
       Item::Conjured
+    else
+    Item::Normal
     end
   end
 end
