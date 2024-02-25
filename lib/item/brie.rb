@@ -1,11 +1,4 @@
-class Item::Brie
-  attr_reader :days_remaining, :quality
-
-  def initialize(days_remaining:, quality:)
-    @days_remaining = days_remaining
-    @quality = quality
-  end
-
+class Item::Brie < Item
   def tick
     @days_remaining -= 1
     @quality += 1
