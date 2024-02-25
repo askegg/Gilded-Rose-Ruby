@@ -5,4 +5,7 @@ class Item
     @days_remaining = days_remaining
     @quality = quality
   end
+
+  def tick
+  end
 end

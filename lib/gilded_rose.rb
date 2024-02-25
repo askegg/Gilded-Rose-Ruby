@@ -15,7 +15,7 @@ module GildedRose
     when "Aged Brie"
       Item::Brie
     when "Sulfuras, Hand of Ragnaros"
-      Item::Sulfuras
+      Item
     when "Backstage passes to a TAFKAL80ETC concert"
       Item::Backstage
     when "Conjured Mana Cake"
