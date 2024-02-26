@@ -1,8 +1,8 @@
 ---
-DEFAULT_CLASS: Item
+DEFAULT: Item
 
-SPECIALISED_CLASSES:
-  "Normal Item": "Item::Normal"
+ITEMS:
   "Aged Brie": "Item::Brie"
   "Backstage passes to a TAFKAL80ETC concert": "Item::Backstage"
   "Conjured Mana Cake": "Item::Conjured"
+  "Normal Item": "Item::Normal"
