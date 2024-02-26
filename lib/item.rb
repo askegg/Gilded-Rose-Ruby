@@ -1,9 +1,9 @@
 class Item
   attr_reader :days_remaining, :quality
 
-  def initialize(days_remaining:, quality:)
-    @days_remaining = days_remaining
-    @quality = quality
+  def initialize(options = {})
+    @days_remaining = options[:days_remaining]
+    @quality = options[:quality]
   end
 
   def tick
