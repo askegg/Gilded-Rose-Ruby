@@ -4,12 +4,6 @@ require_relative "../lib/gilded_rose"
 
 RSpec.describe GildedRose do
   context "Default Items" do
-    it "Should return a item if it doesn't recognise the name" do
-      gilded_rose = GildedRose.new(name: "Doesn't exist")
-
-      expect(gilded_rose).to be_a Item
-    end
-
     it "Should return a item if nothing is specified" do
       gilded_rose = GildedRose.new
 
@@ -20,6 +14,18 @@ RSpec.describe GildedRose do
       gilded_rose = GildedRose.new
 
       expect(gilded_rose).to have_attributes(days_remaining: 0, quality: 0)
+    end
+
+    it "Should return a item if it doesn't recognise the name" do
+      gilded_rose = GildedRose.new(name: "Doesn't exist")
+
+      expect(gilded_rose).to be_a Item
+    end
+
+    it "Should ignore addtional parameters" do
+      gilded_rose = GildedRose.new(name: "Doesn't exist", days_remaining: 7, quality: 10, colour: "red")
+
+      expect(gilded_rose).to have_attributes(days_remaining: 7, quality: 10)
     end
   end
 
