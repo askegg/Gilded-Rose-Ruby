@@ -8,7 +8,7 @@ class Item::Conjured < Item
       @quality -= 1
     end
 
-    @quality -= 3 unless @days_remaining > 0
+    @quality -= 3 if @days_remaining < 0
     @quality = @quality.clamp(0, 50)
   end
 end

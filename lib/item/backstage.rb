@@ -14,7 +14,7 @@ class Item::Backstage < Item
       @quality += 2
     end
 
-    @quality = 0 unless @days_remaining >= 0
+    @quality = 0 if @days_remaining < 0
     @quality = @quality.clamp(0, 50)
   end
 end
