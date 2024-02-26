@@ -3,7 +3,33 @@ require "spec_helper"
 require_relative "../lib/gilded_rose"
 
 RSpec.describe GildedRose do
+  context "Default Items" do
+    it "Should return a item if it doesn't recognise the name" do
+      gilded_rose = GildedRose.new(name: "Doesn't exist")
+
+      expect(gilded_rose).to be_a Item
+    end
+
+    it "Should return a item if nothing is specified" do
+      gilded_rose = GildedRose.new
+
+      expect(gilded_rose).to be_a Item
+    end
+
+    it "should have zero properties" do
+      gilded_rose = GildedRose.new
+
+      expect(gilded_rose).to have_attributes(days_remaining: 0, quality: 0)
+    end
+  end
+
   context "Normal Item" do
+    it "Should return a normal item" do
+      gilded_rose = GildedRose.new(name: "Normal Item")
+
+      expect(gilded_rose).to be_a Item::Normal
+    end
+
     it "before sell date" do
       gilded_rose = GildedRose.new(name: "Normal Item", days_remaining: 5, quality: 10)
 
@@ -38,6 +64,12 @@ RSpec.describe GildedRose do
   end
 
   context "Aged Brie" do
+    it "Should return a brie item" do
+      gilded_rose = GildedRose.new(name: "Aged Brie")
+
+      expect(gilded_rose).to be_a Item::Brie
+    end
+
     it "before sell date" do
       gilded_rose = GildedRose.new(name: "Aged Brie", days_remaining: 5, quality: 10)
 
@@ -96,6 +128,12 @@ RSpec.describe GildedRose do
   end
 
   context "Sulfuras" do
+    it "Should return a item" do
+      gilded_rose = GildedRose.new(name: "Sulfuras, Hand of Ragnaros")
+
+      expect(gilded_rose).to be_a Item
+    end
+
     it "before sell date" do
       gilded_rose = GildedRose.new(name: "Sulfuras, Hand of Ragnaros", days_remaining: 5, quality: 80)
 
@@ -122,6 +160,12 @@ RSpec.describe GildedRose do
   end
 
   context "Backstage Pass" do
+    it "Should return a backstage item" do
+      gilded_rose = GildedRose.new(name: "Backstage passes to a TAFKAL80ETC concert")
+
+      expect(gilded_rose).to be_a Item::Backstage
+    end
+
     it "long before sell date" do
       gilded_rose = GildedRose.new(name: "Backstage passes to a TAFKAL80ETC concert", days_remaining: 11, quality: 10)
 
@@ -220,6 +264,12 @@ RSpec.describe GildedRose do
   end
 
   context "Conjured Mana" do
+    it "Should return a backstage item" do
+      gilded_rose = GildedRose.new(name: "Conjured Mana Cake")
+
+      expect(gilded_rose).to be_a Item::Conjured
+    end
+
     it "before sell date" do
       gilded_rose = GildedRose.new(name: "Conjured Mana Cake", days_remaining: 5, quality: 10)
 
