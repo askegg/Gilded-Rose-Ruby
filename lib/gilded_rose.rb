@@ -1,9 +1,4 @@
-require "zeitwerk"
-loader = Zeitwerk::Loader.for_gem(warn_on_extra_files: false)
-loader.setup
-
-require "yaml"
-ITEM_TYPES = YAML.load_file("config/items.yml").freeze
+require_relative "initializer"
 
 module GildedRose
   def self.new(**args)
