@@ -1,5 +1,3 @@
-require_relative "initializer"
-
 module GildedRose
   def self.new(**args)
     klass_name = ITEM_TYPES["ITEMS"][args[:name]] || ITEM_TYPES["DEFAULT"]
