@@ -1,6 +1,3 @@
-require "zeitwerk"
-loader = Zeitwerk::Loader.new
-loader.push_dir(File.dirname(__FILE__))
-loader.setup
+require_relative "gilded_rose"
 
 puts GildedRose.new(name: "Conjured Mana Cake")
